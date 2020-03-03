@@ -20,7 +20,7 @@ config.TaskWorker.polling = 30 #seconds
 config.TaskWorker.nslaves = 2
 
 
-config.TaskWorker.name = 'DDI-TW-Docker1' #Remember to update this!
+config.TaskWorker.name = 'CRAB-TW' #Remember to update this!
 
 config.TaskWorker.recurringActions =['RemovetmpDir']
 # config.TaskWorker.recurringActions = ['RenewRemoteProxies', 'RemovetmpDir', 'BanDestinationSites']
@@ -106,7 +106,7 @@ config.MyProxy.serverhostkey = '/data/certs/hostkey.pem'
 #config.MyProxy.uisource = '/afs/cern.ch/cms/LCG/LCG-2/UI/cms_ui_env.sh'
 config.MyProxy.cleanEnvironment = True
 config.MyProxy.credpath = '/data/certs/creds' #make sure this directory exists
-config.MyProxy.serverdn = '/DC=ch/DC=cern/OU=computers/CN=ddi.cern.ch'
+config.MyProxy.serverdn = '<enter server dn>'
 
 # Setting the minimum runtime requirements in minutes for automatic splitting
 config.TaskWorker.minAutomaticRuntimeMins = 60
