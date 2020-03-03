@@ -26,7 +26,7 @@ RUN sh install_TW.sh < yes.repo
 
 WORKDIR ${WDIR}/srv/TaskManager/
 
-COPY --chown=${USER}:${USER} env.sh stop.sh start.sh CleanLogs.sh updateTMRuntime.sh ./  
+COPY --chown=${USER}:${USER} env.sh stop.sh start.sh ./  
 COPY --chown=${USER}:${USER} TaskWorkerConfig.py ${RELEASE}/TaskWorkerConfig.py 
 COPY --chown=${USER}:${USER} condor_config ${WDIR}/srv/condor_config 
 

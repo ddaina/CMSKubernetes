@@ -11,7 +11,7 @@ env
         set -x
         echo 'Setting enviroment'
 
-        export RELEASE=$TW_VERSION  # edit as needed
+        export RELEASE=$TW_VERSION 
 
         export MYTESTAREA=/data/srv/TaskManager/$RELEASE
         export SCRAM_ARCH=slc7_amd64_gcc630
