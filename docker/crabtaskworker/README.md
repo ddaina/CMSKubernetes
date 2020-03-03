@@ -13,7 +13,7 @@
 `docker build . -t mytaskworker:$TW_VERSION --build-arg TW_VERSION=$TW_VERSION`
 
 #### Run given image 
-`docker run --name CRABTWv1 -d -ti --privileged --net host -v /etc/grid-security/:/etc/grid-security/  -v /data/certs/:/data/certs/  -v /etc/vomses:/etc/vomses  mytaskworker:$TW_VERSION`
+`docker run --name CRABTWv1 -d -ti --privileged --net host -v /etc/grid-security/:/etc/grid-security/  -v /data/certs/:/data/certs/  -v /etc/vomses:/etc/vomses -v /data/user/logs:/data/srv/TaskManager/logs  mytaskworker:$TW_VERSION`
 
 #### Enter container
 `docker exec -it CRABTWv1 /bin/bash`
