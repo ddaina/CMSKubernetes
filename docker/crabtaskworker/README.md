@@ -15,5 +15,5 @@
 #### Run given image 
 `docker run --name CRABTWv1 -d -ti --privileged --net host -v /etc/grid-security/:/etc/grid-security/  -v /data/certs/:/data/certs/  -v /etc/vomses:/etc/vomses  mytaskworker:$TW_VERSION`
 
-#### Enter in a container
+#### Enter container
 `docker exec -it CRABTWv1 /bin/bash`
