@@ -16,15 +16,11 @@ RUN mkdir -p /data/srv/tmp && mkdir -p /data/srv/TaskManager
 WORKDIR ${WDIR}
 
 # install
-COPY --chown=${USER}:${USER} install_TW.sh .
+COPY --chown=${USER}:${USER} install.sh .
 RUN echo "Y" > yes.repo
-RUN sh install_TW.sh < yes.repo
+RUN sh install.sh < yes.repo
 
 WORKDIR ${WDIR}/srv/TaskManager/
-
-COPY --chown=${USER}:${USER} env.sh stop.sh start.sh ./  
-COPY --chown=${USER}:${USER} TaskWorkerConfig.py ${RELEASE}/TaskWorkerConfig.py 
-COPY --chown=${USER}:${USER} condor_config ${WDIR}/srv/condor_config 
 
 # run the service
 CMD source ${WDIR}/srv/TaskManager/start.sh && while true; do sleep 60;done
