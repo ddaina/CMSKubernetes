@@ -8,6 +8,7 @@ env
 
         touch /data/srv/condor_config
         curl --remote-name-all https://raw.githubusercontent.com/dmwm/CRABServer/master/src/script/Deployment/TaskWorker/{start.sh,env.sh,stop.sh}
+        chmod 750 start.sh env.sh stop.sh
 
         set -x
         echo 'Setting enviroment'
