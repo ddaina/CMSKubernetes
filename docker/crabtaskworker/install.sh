@@ -33,12 +33,9 @@ env
         $RELEASE/common/cmspkg -a $SCRAM_ARCH install cms+crabtaskworker+$RELEASE
 
         set +x
-        echo 'Creating symlink'
-        rm -f current
         ln -s $RELEASE current
         cd $MYTESTAREA
 
-        echo 'Make config file and stop + start '
 
 # else
 #         echo 'Please change to CRAB3 user, TW cannot be installed by root'
