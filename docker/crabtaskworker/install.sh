@@ -18,8 +18,8 @@ env
         export MYTESTAREA=/data/srv/TaskManager/$RELEASE
         export SCRAM_ARCH=slc7_amd64_gcc630
 
-        export REPO=comp.belforte
-        #export REPO=comp
+        #export REPO=comp.ddirmait
+        export REPO=comp
 
         export verbose=true
         echo 'Installation'
@@ -35,8 +35,7 @@ env
         set +x
         ln -s $RELEASE current
         cd $MYTESTAREA
-
-
+        ln -s /data/srv/TaskManager/cfg/TaskWorkerConfig.py TaskWorkerConfig.py
 # else
 #         echo 'Please change to CRAB3 user, TW cannot be installed by root'
 #         echo -ne 'switch to crab3 user: \n\tsudo -u crab3 -i bash\nand try again.\n\n'
