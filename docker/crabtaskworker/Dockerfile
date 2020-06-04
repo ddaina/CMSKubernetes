@@ -1,6 +1,9 @@
 FROM cmssw/cmsweb:20190814
 MAINTAINER Daina Dirmaite daina.dirmaite@gmail.com
 
+#keep only voms-proxy basded on c++
+RUN yum remove voms-clients-java
+
 ENV WDIR=/data
 ENV USER=crab3
 
