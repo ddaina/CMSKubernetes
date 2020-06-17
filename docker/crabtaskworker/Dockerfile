@@ -2,7 +2,9 @@ FROM cmssw/cmsweb:20190814
 MAINTAINER Daina Dirmaite daina.dirmaite@gmail.com
 
 #keep only voms-proxy basded on c++
-RUN yum remove -y voms-clients-java && yum -y install strace
+RUN yum remove -y voms-clients-java && yum -y install strace \
+gfal2-util gfal2-all \
+vim
 
 ENV WDIR=/data
 ENV USER=crab3
