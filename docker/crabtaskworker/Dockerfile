@@ -1,10 +1,11 @@
-FROM cmssw/cmsweb:20190814
+FROM cmssw/cmsweb:20200715
 MAINTAINER Daina Dirmaite daina.dirmaite@gmail.com
 
 #keep only voms-proxy basded on c++
 RUN yum remove -y voms-clients-java && yum -y install strace \
 gfal2-util gfal2-all \
-vim
+vim \
+&& yum clean all && rm -rf /var/cache/yum
 
 ENV WDIR=/data
 ENV USER=crab3
@@ -22,8 +23,7 @@ WORKDIR ${WDIR}
 
 # install
 COPY --chown=${USER}:${USER} install.sh .
-RUN echo "Y" > yes.repo
-RUN sh install.sh < yes.repo
+RUN echo "Y" > yes.repo && sh install.sh < yes.repo
 
 WORKDIR ${WDIR}/srv/TaskManager/
 
