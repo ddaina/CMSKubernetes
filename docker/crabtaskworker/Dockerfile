@@ -1,4 +1,4 @@
-FROM cmssw/cmsweb:20200715
+FROM cmssw/cmsweb:20200901
 MAINTAINER Daina Dirmaite daina.dirmaite@gmail.com
 
 #keep only voms-proxy basded on c++
@@ -17,15 +17,16 @@ USER ${USER}
 ARG TW_VERSION
 ENV RELEASE $TW_VERSION
 ENV TW_VERSION $TW_VERSION
+ENV SERVICE provideService
 
-RUN mkdir -p /data/srv/tmp && mkdir -p /data/srv/TaskManager
+RUN mkdir -p /data/srv/tmp && mkdir -p /data/srv/Publisher && mkdir -p /data/srv/TaskManager
 WORKDIR ${WDIR}
 
 # install
 COPY --chown=${USER}:${USER} install.sh .
 RUN echo "Y" > yes.repo && sh install.sh < yes.repo
 
-WORKDIR ${WDIR}/srv/TaskManager/
 
 # run the service
-CMD source ${WDIR}/srv/TaskManager/start.sh && while true; do sleep 60;done
+CMD sh /data/srv/${SERVICE}/start.sh && while true; do sleep 60;done
+
