@@ -10,8 +10,7 @@ env
 
         export MYTESTAREA=/data/srv/TaskManager/$RELEASE
         export SCRAM_ARCH=slc7_amd64_gcc630
-
-        #export REPO=comp.belforte
+     
         export REPO=comp
 
         export verbose=true
