@@ -38,8 +38,8 @@ filter{
       match => ["timestamp_temp", "YYYY-MM-dd HH:mm:ss,SSS"]
       target => "timestamp_str"
   }
-  ruby { code => "event.set('event_time', (event.get('timestamp_str').to_f * 1000).round(0))" }
-  ruby { code => "event.set('timestamp', (event.get('@timestamp').to_f * 1000).to_i)" }
+  ruby { code => "event.set('timestamp', (event.get('timestamp_str').to_f * 1000).to_i)" }
+  ruby { code => "event.set('producer_time', (event.get('@timestamp').to_f * 1000).to_i)" }
 }
 
 
@@ -48,22 +48,22 @@ output {
   if [log_type] == "work_on_task_completed" {
     http {
         http_method => post
-        url => "http://localhost:34343/"
+        url => "http://monit-logs.cern.ch:10012/"
         #url => "http://localhost:9200/crabtw9-%{+YYYY.MM.dd}/_doc"
         content_type => "application/json; charset=UTF-8"
         format => "message"
-        message => '{"producer": "crab", "type": "crabtaskworker", "timestamp":"%{timestamp}", "event_time":"%{event_time}", "log_type":"%{log_type}", "slaveID": "%{slaveID}", "workType": "%{workType}", "taskName": "%{taskName}", "completionTime": "%{completionTime}"}'
+        message => '{"producer": "crab", "type": "crabtaskworker", "timestamp":"%{timestamp}", "producer_time":"%{producer_time}", "log_type":"%{log_type}", "slaveID": "%{slaveID}", "workType": "%{workType}", "taskName": "%{taskName}", "completionTime": "%{completionTime}"}'
      }
    }
 
   if [log_type] == "start_new_task" {
     http {
         http_method => post
-        url => "http://localhost:34343/"
+        url => "http://monit-logs.cern.ch:10012/"
         #url => "http://localhost:9200/crabtw9-%{+YYYY.MM.dd}/_doc"
         content_type => "application/json; charset=UTF-8"
         format => "message"
-        message => '{"producer": "crab", "type": "crabtaskworker", "timestamp":"%{timestamp}", "event_time":"%{event_time}", "log_type":"%{log_type}", "slaveID": "%{slaveID}", "functionName": "%{functionName}", "taskID": "%{taskID}", "taskName": "%{taskName}"}'
+        message => '{"producer": "crab", "type": "crabtaskworker", "timestamp":"%{timestamp}", "producer_time":"%{producer_time}", "log_type":"%{log_type}", "slaveID": "%{slaveID}", "functionName": "%{functionName}", "taskID": "%{taskID}", "taskName": "%{taskName}"}'
      }
    }
 
@@ -71,11 +71,11 @@ output {
   if [log_type] == "action_on_task_finished" {
     http {
         http_method => post
-        url => "http://localhost:34343/"
+        url => "http://monit-logs.cern.ch:10012/"
         #url => "http://localhost:9200/crabtw9-%{+YYYY.MM.dd}/_doc"
         content_type => "application/json; charset=UTF-8"
         format => "message"
-        message => '{"producer": "crab", "type": "crabtaskworker", "timestamp":"%{timestamp}", "event_time":"%{event_time}", "log_type":"%{log_type}", "action": "%{action}", "taskID": "%{taskID}","completionTime": "%{completionTime}", "taskName": "%{taskName}"}'
+        message => '{"producer": "crab", "type": "crabtaskworker", "timestamp":"%{timestamp}", "producer_time":"%{producer_time}", "log_type":"%{log_type}", "action": "%{action}", "taskID": "%{taskID}","completionTime": "%{completionTime}", "taskName": "%{taskName}"}'
      }
    }
 
