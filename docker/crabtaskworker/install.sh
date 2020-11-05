@@ -11,7 +11,7 @@ env
         export MYTESTAREA=/data/srv/TaskManager/$RELEASE
         export SCRAM_ARCH=slc7_amd64_gcc630
      
-        export REPO=comp
+        export REPO=comp.crab3
 
         export verbose=true
         echo 'Installation'

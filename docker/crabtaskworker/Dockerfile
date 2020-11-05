@@ -23,10 +23,10 @@ RUN mkdir -p /data/srv/tmp && mkdir -p /data/srv/Publisher && mkdir -p /data/srv
 WORKDIR ${WDIR}
 
 # install
-COPY --chown=${USER}:${USER} install.sh .
+COPY --chown=${USER}:${USER} install.sh monitor.sh ./
 RUN echo "Y" > yes.repo && sh install.sh < yes.repo
 
 
 # run the service
-CMD sh /data/srv/${SERVICE}/start.sh && while true; do sleep 60;done
+CMD sh /data/srv/${SERVICE}/start.sh && sh /data/monitor.sh && while true; do sleep 60;done
 
